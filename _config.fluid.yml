@@ -4,12 +4,46 @@
 
 # Site
 title: 阿李贝斯的博客
-subtitle: ''
+subtitle: 'hihihi'
 description: ''
 keywords:
 author: 阿李贝斯
 language: zh-CN
 timezone: Asia/Shanghai
+custom_css: /css/custom.css
+navbar:
+  blog_title: 阿李贝斯
+  menu:
+    - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
+    - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill'}
+    - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
+    - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill', name: '联系我' }
+    # - {
+    #     key: '文档',
+    #     icon: 'iconfont icon-books',
+    #     submenu: [
+    #       { key: '主题博客', link: 'https://hexo.fluid-dev.com/' },
+    #       { key: '配置指南', link: 'https://hexo.fluid-dev.com/docs/guide/' },
+    #       { key: '图标用法', link: 'https://hexo.fluid-dev.com/docs/icon/' }
+    #     ]
+    #   }
+index:
+  slogan:
+    enable: true
+    text: 阿李贝斯的博客
+post:
+  default_index_img: /img/bg/cover2.jpg
+about:
+  avatar: /img/avatar.jpg
+  name: "阿李贝斯"
+  intro: "你的朋友"
+  icons:
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/strugglinglee', tip: 'GitHub' }
+    # - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '豆瓣' }
+    # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }
+    - { class: 'iconfont icon-juejin-fill', link: 'https://juejin.cn/user/1028798615654669', tip: '掘金' }
+    # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' ,qrcode: ''}
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
