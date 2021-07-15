@@ -53,6 +53,13 @@ about:
     - { class: 'iconfont icon-juejin-fill', link: 'https://juejin.cn/user/1028798615654669', tip: '掘金' }
     # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' ,qrcode: ''}
 
+favicon:
+  small: /img/favicon.ico
+  medium: /img/favicon.ico
+  apple_touch_icon: /img/favicon.ico
+  safari_pinned_tab: /img/favicon.ico
+
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://strugglinglee.github.io/blog
