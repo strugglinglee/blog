@@ -32,9 +32,17 @@ index:
   slogan:
     enable: true
     text: 阿李贝斯的博客
+  banner_img: /img/bg/cover2.jpg
+archive:
+  banner_img: /img/bg/cover2.jpg
+category:
+  banner_img: /img/bg/cover2.jpg
+tag:
+  banner_img: /img/bg/cover2.jpg
 post:
   default_index_img: /img/bg/cover2.jpg
 about:
+  banner_img: /img/bg/cover2.jpg
   avatar: /img/avatar.jpg
   name: "阿李贝斯"
   intro: "你的朋友"
