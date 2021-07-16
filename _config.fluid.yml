@@ -4,7 +4,7 @@
 
 # Site
 title: 阿李贝斯的博客
-subtitle: 'hihihi'
+subtitle: ''
 description: ''
 keywords:
 author: 阿李贝斯
@@ -12,12 +12,13 @@ language: zh-CN
 timezone: Asia/Shanghai
 custom_css: /css/custom.css
 navbar:
-  blog_title: 阿李贝斯
+  blog_title: 阿李贝斯的博客
   menu:
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill'}
     - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - { key: 'comment', link: '/comment/', icon: 'iconfont icon-pen', name: '留言板'}
     - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill', name: '联系我' }
     # - {
     #     key: '文档',
@@ -33,7 +34,7 @@ navbar:
 index:
   slogan:
     enable: true
-    text: 阿李贝斯的博客
+    text: 坚持做一件小事
   banner_img: /img/bg/cover2.jpg
 
 # 归档页配置
