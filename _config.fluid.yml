@@ -28,19 +28,60 @@ navbar:
     #       { key: '图标用法', link: 'https://hexo.fluid-dev.com/docs/icon/' }
     #     ]
     #   }
+
+# 首页配置
 index:
   slogan:
     enable: true
     text: 阿李贝斯的博客
   banner_img: /img/bg/cover2.jpg
+
+# 归档页配置
 archive:
   banner_img: /img/bg/cover2.jpg
+
+# 分类页配置
 category:
   banner_img: /img/bg/cover2.jpg
+
+# 标签页配置
 tag:
   banner_img: /img/bg/cover2.jpg
+
+# 文章配置
 post:
   default_index_img: https://pic1.zhimg.com/80/v2-fd6dfd69ca93171e109e1c71892dce40_1440w.jpg
+  comments:
+    enable: true
+    type: twikoo
+
+# Twikoo
+# 基于腾讯云开发
+# Based on Tencent CloudBase
+# See: https://twikoo.js.org
+twikoo:
+  envId: 'hello-cloudbase-6gqnodds05df5f3c'
+  region: ap-shanghai
+  path: window.location.pathname
+
+# 畅言 Changyan
+# 基于第三方的服务
+# Based on third-party service, insufficient support for regions outside China
+# http://changyan.kuaizhan.com
+# changyan:
+#   appid: 'cyvyEdMbX'
+#   appkey: 'prod_b3f852b1ea84d606e6f4dbe95ebcc4c0'
+
+# gitalk:
+#   enable: true #用来做启用判断可以不用
+#   owner: 'strugglinglee' #github用户名
+#   repo: 'blog' # 存储博客评论的仓库地址，可以是存储博客的仓库
+#   clientID: '65823003e406f7031b5d' #ClientID
+#   clientSecret: '8e3d5e93ecac93b0747339d2329be8b7fc0d2a69' #ClientSecret
+#   admin: 'strugglinglee' #github用户名
+#   distractionFreeMode: true
+
+# 关于页配置
 about:
   banner_img: /img/bg/cover2.jpg
   avatar: /img/avatar.jpg
@@ -159,3 +200,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
