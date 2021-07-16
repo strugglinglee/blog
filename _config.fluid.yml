@@ -111,8 +111,7 @@ apple_touch_icon: /img/favicon.ico
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://strugglinglee.github.io/blog
-root: /blog/
+url: http://strugglinglee.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -207,4 +206,15 @@ theme: fluid
 deploy:
   type: ''
 
-
+#---------------------------
+# 页脚
+# Footer
+#---------------------------
+footer:
+  # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
+  # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
+  content: '
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a>
+  '
