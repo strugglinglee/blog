@@ -56,6 +56,11 @@ post:
     enable: true
     type: twikoo
 
+search:
+  # 搜索索引文件的路径，可以是相对路径或外站的绝对路径
+  # Path for search index file, it can be a relative path or an absolute path
+  path: /blog/local-search.xml
+
 # Twikoo
 # 基于腾讯云开发
 # Based on Tencent CloudBase
