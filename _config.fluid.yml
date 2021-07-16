@@ -40,7 +40,7 @@ category:
 tag:
   banner_img: /img/bg/cover2.jpg
 post:
-  default_index_img: /img/bg/cover2.jpg
+  default_index_img: https://pic1.zhimg.com/80/v2-fd6dfd69ca93171e109e1c71892dce40_1440w.jpg
 about:
   banner_img: /img/bg/cover2.jpg
   avatar: /img/avatar.jpg
@@ -53,11 +53,13 @@ about:
     - { class: 'iconfont icon-juejin-fill', link: 'https://juejin.cn/user/1028798615654669', tip: '掘金' }
     # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' ,qrcode: ''}
 
-favicon:
-  small: /img/favicon.ico
-  medium: /img/favicon.ico
-  apple_touch_icon: /img/favicon.ico
-  safari_pinned_tab: /img/favicon.ico
+# 用于浏览器标签的图标
+# Icon for browser tab
+favicon: /img/favicon.ico
+
+# 用于苹果设备的图标
+# Icon for Apple touch
+apple_touch_icon: /img/favicon.ico
 
 
 # URL
