@@ -8,7 +8,6 @@ categories:
 - 进阶
 - vue
 banner_img: https://pic1.zhimg.com/80/v2-fd6dfd69ca93171e109e1c71892dce40_1440w.jpg
-index_img: https://pic1.zhimg.com/80/v2-fd6dfd69ca93171e109e1c71892dce40_1440w.jpg
 ---
 
 
