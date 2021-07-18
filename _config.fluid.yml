@@ -54,12 +54,19 @@ post:
   default_index_img: https://pic1.zhimg.com/80/v2-fd6dfd69ca93171e109e1c71892dce40_1440w.jpg
   comments:
     enable: true
-    type: twikoo
+    type: valine
 
 search:
   # 搜索索引文件的路径，可以是相对路径或外站的绝对路径
   # Path for search index file, it can be a relative path or an absolute path
   path: /local-search.xml
+
+valine:
+  appId: 'qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz'
+  appKey: 'tn09L0zaBGuSajQBt5FVsucF'
+
+# waline:
+#   serverURL: ''
 
 # Twikoo
 # 基于腾讯云开发
