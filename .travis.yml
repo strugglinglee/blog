@@ -9,7 +9,6 @@ branches:
 install:
   - yarn
 script:
-  - hexo clean
   - hexo generate # generate static files
 deploy:
   provider: pages
