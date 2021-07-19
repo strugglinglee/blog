@@ -10,6 +10,7 @@ install:
   - yarn
 script:
   - hexo generate # generate static files
+  - echo "$CNAME_URL" > dist/CNAME
 deploy:
   provider: pages
   skip-cleanup: true
