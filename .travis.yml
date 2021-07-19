@@ -2,15 +2,21 @@ sudo: false
 language: node_js
 node_js:
   - "14" # use nodejs v10 LTS
-cache: npm
+cache:
+  apt: true
+  yarn: true
+  npm: true
+  directories:
+    - node_modules
+    - source/CNAME
 branches:
   only:
     - main # build master branch only
 install:
   - yarn
 script:
+  - hexo clean
   - hexo generate # generate static files
-  - echo "$CNAME_URL" > CNAME
 deploy:
   provider: pages
   skip-cleanup: true
