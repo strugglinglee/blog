@@ -117,10 +117,9 @@ module.exports = {
 ![](/img/github/5-1.png)
 ![](/img/github/5.png)
 
-这里我们使用到了[JamesIves](https://github.com/JamesIves/github-pages-deploy-action)，注意版本的更新，可以参考github仓库中的说明文件。
-`JamesIves`也是阮一峰老师曾经在博文中推荐过的，目前star已近3k，还是可以放心使用的。
-
 参考如下代码替换node.js.yml文件
+> 这里我们使用到了[JamesIves](https://github.com/JamesIves/github-pages-deploy-action)，注意版本的更新，可以参考github仓库中的说明文件。
+> `JamesIves`也是阮一峰老师曾经在博文中推荐过的，目前star已近3k，还是可以放心使用的。
 
 ```yml
 name: Node.js CI
