@@ -8,8 +8,6 @@ tags:
 categories:
 - 基础巩固
 - es6+
-banner_img: https://pic4.zhimg.com/80/v2-84a47569a1117310a2fb58086a8ed2b3_1440w.jpg
-index_img: https://pic4.zhimg.com/80/v2-84a47569a1117310a2fb58086a8ed2b3_1440w.jpg
 ---
 
 > 本文需要提前掌握es5中构造函数相关知识点：[我是知识点](https://juejin.im/post/5ec6464a518825434062f38e)

@@ -4,10 +4,7 @@ date: 2020-06-14 20:28:06
 tags:
 - vue
 categories:
-- 进阶
 - vue
-banner_img: https://pic2.zhimg.com/80/v2-c062c4d8d223c6f487026cf535274ba3_1440w.jpg
-index_img: https://pic2.zhimg.com/80/v2-c062c4d8d223c6f487026cf535274ba3_1440w.jpg
 ---
 
 ### vm.$attrs

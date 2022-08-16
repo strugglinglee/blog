@@ -4,9 +4,6 @@ date: 2020-06-07 16:46:16
 tags: 计算机基础
 categories:
 - 计算机基础
-- 架构模式
-banner_img: https://pic2.zhimg.com/80/v2-a16f1d656162111d3ea6b97898eff5b9_1440w.jpg
-index_img: https://pic2.zhimg.com/80/v2-a16f1d656162111d3ea6b97898eff5b9_1440w.jpg
 ---
 
 > 参考阮一峰网络日志，廖雪峰官方网站，以及部分网络资料总结

@@ -5,8 +5,6 @@ tags: css
 categories:
 - 基础巩固
 - css
-banner_img: https://pic4.zhimg.com/80/v2-6d2996424c3bacd7f1d0646b66a1add7_1440w.jpg
-index_img: https://pic4.zhimg.com/80/v2-6d2996424c3bacd7f1d0646b66a1add7_1440w.jpg
 ---
 #### 垂直居中的方案
 - **弹性盒**

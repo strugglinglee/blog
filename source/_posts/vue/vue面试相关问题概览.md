@@ -6,10 +6,7 @@ tags:
 - vue3.0
 - 面试
 categories:
-- 进阶
 - vue
-banner_img: https://pic2.zhimg.com/80/v2-7dcf59a8d30c914a683b91ce34b9e131_1440w.jpg
-index_img: https://pic2.zhimg.com/80/v2-7dcf59a8d30c914a683b91ce34b9e131_1440w.jpg
 ---
 
 ### 基础篇

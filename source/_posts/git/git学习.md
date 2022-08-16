@@ -6,8 +6,6 @@ tags:
 - 基础巩固
 categories:
 - git
-banner_img: https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3444618306,2493154184&fm=26&gp=0.jpg
-index_img: https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3444618306,2493154184&fm=26&gp=0.jpg
 ---
 
 

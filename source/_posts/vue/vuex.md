@@ -5,10 +5,7 @@ tags:
 - vuex
 - eventBus
 categories:
-- 进阶
 - vue
-banner_img: https://pic4.zhimg.com/80/v2-cef3a4e7053d13bb5939956e85bd67f0_1440w.jpg
-index_img: https://pic4.zhimg.com/80/v2-cef3a4e7053d13bb5939956e85bd67f0_1440w.jpg
 ---
 
 > 最初了解到eventBus和vuex并不清楚其原理，只知道无脑用，最近比较好奇这两者的区别，特以此文梳理
