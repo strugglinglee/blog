@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿李贝斯">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="我为什么选择Hexo-Fluid?目前个人博客搭建的方式众多，但最终的目的其实很简单，就是记录自己的技术学习历程，所以不想本末倒置浪费太多时间。我选择Hexo博客框架来搭建博客的主要原因如下：  十分方便快捷，又能实现自适应，最重要的还是美观，让我有动力写下去 目前github上也有很多魔改Hexo框架的优秀例子，让我也很想尝试一把来打造属于自己的名片  选择Fluid主题的起因其实也很纯粹，就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo-Fluid主题博客搭建">
+<meta property="og:url" content="https://blog.strugglinglee.cn/2021/07/18/hexo/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="阿李贝斯的博客">
+<meta property="og:description" content="我为什么选择Hexo-Fluid?目前个人博客搭建的方式众多，但最终的目的其实很简单，就是记录自己的技术学习历程，所以不想本末倒置浪费太多时间。我选择Hexo博客框架来搭建博客的主要原因如下：  十分方便快捷，又能实现自适应，最重要的还是美观，让我有动力写下去 目前github上也有很多魔改Hexo框架的优秀例子，让我也很想尝试一把来打造属于自己的名片  选择Fluid主题的起因其实也很纯粹，就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/1.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/2.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/3.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/4.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/5.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/6.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/hexo/7.png">
+<meta property="article:published_time" content="2021-07-18T07:25:27.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:29:41.904Z">
+<meta property="article:author" content="阿李贝斯">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.strugglinglee.cn/img/hexo/1.png">
+  
+  
+  
+  <title>Hexo-Fluid主题博客搭建 - 阿李贝斯的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.strugglinglee.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿李贝斯的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comment/">
+                <i class="iconfont icon-pen"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                联系我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo-Fluid主题博客搭建"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-18 15:25" pubdate>
+          2021年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo-Fluid主题博客搭建</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="我为什么选择Hexo-Fluid"><a href="#我为什么选择Hexo-Fluid" class="headerlink" title="我为什么选择Hexo-Fluid?"></a>我为什么选择Hexo-Fluid?</h3><p>目前个人博客搭建的方式众多，但最终的目的其实很简单，就是记录自己的技术学习历程，所以不想本末倒置浪费太多时间。我选择Hexo博客框架来搭建博客的主要原因如下：</p>
+<ul>
+<li>十分方便快捷，又能实现自适应，最重要的还是美观，让我有动力写下去</li>
+<li>目前github上也有很多魔改Hexo框架的优秀例子，让我也很想尝试一把来打造属于自己的名片</li>
+</ul>
+<p>选择Fluid主题的起因其实也很纯粹，就是因为文档比较全面，维护情况也良好，让我能够高效且稳定的搭建自己的博客。</p>
+<blockquote>
+<p>之前在选择博客主题方面浪费很多时间，最终选择了某主题，但后期实际搭建和维护的时候查找资料浪费了大量时间，后期甚至启动的时候还遇到一些问题，还要自己去改源文件，让我无法很好的专注于写博客本身这件事，所以我十分明确高效简单稳定是我的第一需求。<br>后续在使用Fluid主题的时候，也更加坚定了自己这个选择，Fluid yyds!</p>
+</blockquote>
+<h3 id="博客搭建过程"><a href="#博客搭建过程" class="headerlink" title="博客搭建过程"></a>博客搭建过程</h3><p>首先献上Hexo官方文档和Fluid文档，建议食用顺序是先按照官方文档搭建出博客，然后再根据Fluid配置指南开始做配置了，后文将只会说一些我搭建时遇到的问题和解决方案，其他的文档里都写的很清楚了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs">Fluid文档</a></li>
+</ul>
+<h4 id="编辑文件没有权限"><a href="#编辑文件没有权限" class="headerlink" title="编辑文件没有权限"></a>编辑文件没有权限</h4><p>我修改了文件的操作权限后仍有这个问题，terminal执行以下代码解决</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean">sudo chmod -R <span class="hljs-number">777</span> . ## 为当前目录及子目录搜于读写权限<br></code></pre></td></tr></table></figure>
+
+<h3 id="使用github-pages"><a href="#使用github-pages" class="headerlink" title="使用github pages"></a>使用github pages</h3><h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><p>创建一个新仓库，如果想使用<a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a>链接能直接进入博客的话，仓库名直接写username.github.io<br>但我比较想用另外的仓库来做为博客存放点，所以我建了一个名为blog的仓库,但这个决定让我遇到了一些问题，因为在_config.yml的配置不对，导致我编译出的文件引用路径不对，样式错乱，下面展示下正确的配置</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">url:</span> https:<span class="hljs-comment">//username.github.io/blog</span><br><span class="hljs-symbol">root:</span> /blog<br></code></pre></td></tr></table></figure>
+
+<h4 id="search功能检查"><a href="#search功能检查" class="headerlink" title="search功能检查"></a>search功能检查</h4><p>如果通过blog子页面去访问github pages,注意修改下search页面路径为blog仓库下的，不然搜索时会因为找不到搜索页持续loading</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">search:</span><br>  <span class="hljs-meta"># 搜索索引文件的路径，可以是相对路径或外站的绝对路径</span><br>  <span class="hljs-meta"># 如果后续修改为自定义域名后记得把/blog前缀去掉</span><br><span class="hljs-symbol">  path:</span> <span class="hljs-meta-keyword">/blog/</span>local-search.xml<br></code></pre></td></tr></table></figure>
+
+<h4 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h4><p>如果后期你想改用github pages自定义域名的话，url写自己的域名就好，root这一行记得注释掉</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">ur<span class="hljs-variable">l:</span> http<span class="hljs-variable">s:</span>//blog.strugglinglee.<span class="hljs-keyword">cn</span><br># roo<span class="hljs-variable">t:</span> /blog<br></code></pre></td></tr></table></figure>
+
+<p>我这里顺带说下配置自定义域名的方法，如下图，setting-&gt;pages-&gt;custom domain<br><img src="/img/hexo/1.png" srcset="/img/loading.gif" lazyload><br>这里比较建议用子域名，添加一条dns解析记录即可，我使用的是腾讯云，其他运营商应该也是类似的，主机记录填写blog，记录类型选择CHAME,记录值为github page的域名<br><img src="/img/hexo/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>目前配置ssl证书使用https安全链接访问也比较方便，一般运营商都可以支持一键申请和部署，不需要做太多操作，记得提前备案你的网站。</p>
+<h3 id="如何修改配置"><a href="#如何修改配置" class="headerlink" title="如何修改配置"></a>如何修改配置</h3><p>修改配置这里我走了比较多的弯路，习惯于google，很是浪费时间，这边建议搭配fluid文档和<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml">https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml</a>来修改配置</p>
+<p>比如我想修改网站的favicon小图标，直接在_config.yml文件中ctrl+f来搜索favicon，把这两行复制到自己的yml文件中再进行修改，就可以覆盖默认配置，真香。<br><img src="/img/hexo/3.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>_config.yml可以自己看一遍，对一些基础配置有个了解会比较方便后续你修改。</p>
+</blockquote>
+<h3 id="自动编译部署"><a href="#自动编译部署" class="headerlink" title="自动编译部署"></a>自动编译部署</h3><h4 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h4><p>我这边是用到了hexo官方推荐的travis-ci第三方自动编译部署<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages">链接自取</a><br><img src="/img/hexo/4.png" srcset="/img/loading.gif" lazyload><br>按配置一步步来就好，配好了就十分简单了，push上去直接部署</p>
+<h4 id="编译问题处理"><a href="#编译问题处理" class="headerlink" title="编译问题处理"></a>编译问题处理</h4><p>我按官方给的yml文件配置部署有时候会存在缓存文件未更新的情况，或者下面这些yarn报错的问题</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">The</span> command <span class="hljs-string">&quot;yarn&quot;</span> failed and exited with <span class="hljs-number">1</span> during .<br><span class="hljs-attribute">The</span> command <span class="hljs-string">&quot;eval yarn --frozen-lockfile &quot;</span> failed. Retrying, <span class="hljs-number">2</span> of <span class="hljs-number">3</span>.<br></code></pre></td></tr></table></figure>
+
+<p>这里贴一下我自己修改后的yml文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">sudo:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">language:</span> <span class="hljs-string">node_js</span><br><span class="hljs-attr">node_js:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;14&quot;</span> <span class="hljs-comment"># use nodejs v14 LTS 解决yarn报错问题</span><br><span class="hljs-attr">cache:</span> <span class="hljs-string">npm</span><br><span class="hljs-attr">branches:</span><br>  <span class="hljs-attr">only:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">main</span> <span class="hljs-comment"># build master branch only</span><br><span class="hljs-attr">install:</span> <span class="hljs-comment"># 解决yarn报错问题</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">yarn</span><br><span class="hljs-attr">script:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">clean</span> <span class="hljs-comment"># 解决缓存文件未更新问题</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">hexo</span> <span class="hljs-string">generate</span> <span class="hljs-comment"># generate static files</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">provider:</span> <span class="hljs-string">pages</span><br>  <span class="hljs-attr">skip-cleanup:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">github-token:</span> <span class="hljs-string">$GH_TOKEN</span><br>  <span class="hljs-attr">keep-history:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">on:</span><br>    <span class="hljs-attr">branch:</span> <span class="hljs-string">main</span><br>  <span class="hljs-attr">local-dir:</span> <span class="hljs-string">public</span><br></code></pre></td></tr></table></figure>
+
+<p>travis-ci还是挺稳定的，编译部署也很快，个人还是比较推荐的。后续又了解到了github自家的Github Actions，都是免费的，决定抽时间也玩玩。</p>
+<h3 id="自定义iconfont使用"><a href="#自定义iconfont使用" class="headerlink" title="自定义iconfont使用"></a>自定义iconfont使用</h3><p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E6%A0%87">官方配置自定义iconfont文档</a></p>
+<h4 id="使用流程参考"><a href="#使用流程参考" class="headerlink" title="使用流程参考"></a>使用流程参考</h4><p>可以看到官方文件是使用伪元素这样处理iconfont的<br><img src="/img/hexo/5.png" srcset="/img/loading.gif" lazyload><br>没有什么实际参考意义，我们实际上可以通过background来处理就好，比如我想使用一个掘金的小图标来放到关于页面，具体步骤如下</p>
+<ol>
+<li>在source文件夹下建了一个css文件夹并且新建一个custom.css文件</li>
+<li>在_config.fluid.yml文件中添加这行代码 custom_css: /css/custom.css</li>
+<li>在css文件中贴入类似如下的代码 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs 1c">.icon-juejin-fill &#123;<br>  display: inline-block;<br>  width: <span class="hljs-number">24</span>px;<br>  height: <span class="hljs-number">26</span>px;<br>  background: url(&#x27;data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F<span class="hljs-number">2000</span>%2Fsvg%22%20width%3D%<span class="hljs-number">2224</span>%22%20height%3D%<span class="hljs-number">2224</span>%22%20viewBox%3D%220%200%<span class="hljs-number">2031</span>%<span class="hljs-number">2024</span>%22%20fill%3D%22none%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M15.<span class="hljs-number">0737</span>%205.<span class="hljs-number">8039</span>6H15.<span class="hljs-number">0757</span>L18.706%202.<span class="hljs-number">9172</span>2L15.<span class="hljs-number">0757</span>%200.<span class="hljs-number">00406298</span>L15.<span class="hljs-number">0717</span>%200L11.<span class="hljs-number">4475</span>%202.<span class="hljs-number">9111</span>2L15.<span class="hljs-number">0717</span>%205.<span class="hljs-number">8019</span>3L15.<span class="hljs-number">0737</span>%205.<span class="hljs-number">8039</span>6ZM15.<span class="hljs-number">0757</span>%<span class="hljs-number">2014.9111</span>L15.<span class="hljs-number">0778</span>%<span class="hljs-number">2014.9091</span>L24.<span class="hljs-number">4429</span>%207.<span class="hljs-number">5205</span>7L21.<span class="hljs-number">9036</span>%205.<span class="hljs-number">4809</span>6L15.<span class="hljs-number">0778</span>%<span class="hljs-number">2010.8664</span>L15.<span class="hljs-number">0757</span>%<span class="hljs-number">2010.8685</span>L15.<span class="hljs-number">0737</span>%<span class="hljs-number">2010.8705</span>L8.<span class="hljs-number">2479</span>%205.<span class="hljs-number">4850</span>2L5.<span class="hljs-number">7105</span>7%207.<span class="hljs-number">5246</span>3L15.<span class="hljs-number">0737</span>%<span class="hljs-number">2014.9132</span>L15.<span class="hljs-number">0757</span>%<span class="hljs-number">2014.9111</span>ZM15.<span class="hljs-number">0716</span>%<span class="hljs-number">2019.9614</span>L15.<span class="hljs-number">0757</span>%<span class="hljs-number">2019.9593</span>L27.614%<span class="hljs-number">2010.06</span>6L30.<span class="hljs-number">1534</span>%<span class="hljs-number">2012.1056</span>L24.449%<span class="hljs-number">2016.6053</span>L15.<span class="hljs-number">0757</span>%<span class="hljs-number">2024</span>L0.<span class="hljs-number">243779</span>%<span class="hljs-number">2012.3047</span>L0%<span class="hljs-number">2012.1117</span>L2.<span class="hljs-number">5393</span>6%<span class="hljs-number">2010.0721</span>L15.<span class="hljs-number">0716</span>%<span class="hljs-number">2019.9614</span>Z%22%20fill%3D%22%231E80FF%22%2F%3E%3C%2Fsvg%3E&#x27;) no-repeat center <span class="hljs-number">4</span>px;<br>  background-size: <span class="hljs-number">100</span>%;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>i标签通过class来引用就ok</li>
+</ol>
+<blockquote>
+<p>注意svg文件需要通过encodeURIComponent方法来编码下，不然会有兼容问题，部分机型会看不到，比如我这边mac就会出现图标消失的问题</p>
+</blockquote>
+<h3 id="评论插件的选择"><a href="#评论插件的选择" class="headerlink" title="评论插件的选择"></a>评论插件的选择</h3><p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/#%E8%AF%84%E8%AE%BA">评论配置文档入口</a></p>
+<p>其实fluid官方已经做了很多评论插件的支持，根据其给出的参考文档链接就能快速方便的进行配置<br>通过在<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml">https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml</a>文件中搜索对应的关键字把相关的配置copy过来进行填写就好。</p>
+<p><img src="/img/hexo/6.png" srcset="/img/loading.gif" lazyload></p>
+<p>尝试了很多，我个人比较喜欢极简方便快捷的，所以我选择了Valine，顺带提一句，Twikoo (基于腾讯云开发)其实看起来也特好用，输入自己的qq邮箱还能自动生成自己的qq头像，但是不是免费的，嗯，向金钱低头。<br>btw，免费的Valine已经很香了，如下图。</p>
+<p><img src="/img/hexo/7.png" srcset="/img/loading.gif" lazyload></p>
+<p>以上，就是我近期对Hexo-Fluid的初步尝试，也算是初见成效，写文章也更有动力了。</p>
+<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p>遇到问题，解决问题的过程很煎熬，但是只要不停的尝试，成功的那一刻是难以言喻的。另外深刻体会到一点就是任何事情在最开始的时候最不能偷懒，必须先有一个全局的规划，多方对比选择最适合的方案，不然只会是不停的浪费时间，不停的撞南墙。只要走上一条正确的路，加上坚持，虽然过程中也会有些许磕绊，但最后成功之后便都是收获。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="category-chain-item">博客</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/hexo/">#hexo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo-Fluid主题博客搭建</div>
+      <div>https://blog.strugglinglee.cn/2021/07/18/hexo/博客搭建记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿李贝斯</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/21/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/css/flex/" title="关于Flex布局的深度学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于Flex布局的深度学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/23/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/es6+/%E5%8F%AF%E9%80%89%E9%93%BE%E5%92%8C%E5%8F%8C%E9%97%AE%E5%8F%B7/" title="理解可选链和Null 判断运算符">
+                        <span class="hidden-mobile">理解可选链和Null 判断运算符</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz","appKey":"tn09L0zaBGuSajQBt5FVsucF","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

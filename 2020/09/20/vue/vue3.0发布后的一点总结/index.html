@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿李贝斯">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="分离内部模块 vue3.0的核心仍然是通过一个简单的&lt;script &#x2F;&gt;标签来使用，但其内部结构已经被重写，并解耦成一个个模块的集合 允许终端用户通过tree-shaking的形式将减少一半运行时的体积  tree shaking ，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code) 运行时rumtime    这些模块还暴露了底层api，解锁了许多高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3.0发布后的一点总结">
+<meta property="og:url" content="https://blog.strugglinglee.cn/2020/09/20/vue/vue3.0%E5%8F%91%E5%B8%83%E5%90%8E%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="阿李贝斯的博客">
+<meta property="og:description" content="分离内部模块 vue3.0的核心仍然是通过一个简单的&lt;script &#x2F;&gt;标签来使用，但其内部结构已经被重写，并解耦成一个个模块的集合 允许终端用户通过tree-shaking的形式将减少一半运行时的体积  tree shaking ，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code) 运行时rumtime    这些模块还暴露了底层api，解锁了许多高级">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-20T08:30:06.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:29:41.904Z">
+<meta property="article:author" content="阿李贝斯">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue3.0">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>vue3.0发布后的一点总结 - 阿李贝斯的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.strugglinglee.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿李贝斯的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comment/">
+                <i class="iconfont icon-pen"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                联系我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue3.0发布后的一点总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-20 16:30" pubdate>
+          2020年9月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue3.0发布后的一点总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="分离内部模块"><a href="#分离内部模块" class="headerlink" title="分离内部模块"></a>分离内部模块</h3><ul>
+<li>vue3.0的核心仍然是通过一个简单的<code>&lt;script /&gt;</code>标签来使用，但其内部结构已经被重写，并解耦成一个个模块的集合</li>
+<li>允许终端用户通过tree-shaking的形式将减少一半运行时的体积<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/guides/tree-shaking/">tree shaking</a> ，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code)</li>
+<li>运行时<a target="_blank" rel="noopener" href="https://webpack.docschina.org/concepts/manifest/">rumtime</a></li>
+</ul>
+</blockquote>
+</li>
+<li>这些模块还暴露了底层api，解锁了许多高级用法</li>
+</ul>
+<h3 id="引入Composition-API"><a href="#引入Composition-API" class="headerlink" title="引入Composition API"></a>引入Composition API</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://vue-composition-api-rfc.netlify.app/zh/#%E6%A6%82%E8%BF%B0">Composition API RFC传送门</a></p>
+</blockquote>
+<h4 id="什么是Composition-API"><a href="#什么是Composition-API" class="headerlink" title="什么是Composition API"></a>什么是Composition API</h4><ul>
+<li>一套全新的 API，旨在解决 Vue 在大规模应用场景中的痛点。</li>
+<li>Composition API 构建于响应式 API 之上，实现了类似于 React hook 的逻辑组成与复用，相较于 2.x 基于对象的 API 方式来说，拥有更加灵活的代码组织模式，以及更为可靠的类型推断能力。</li>
+</ul>
+<h3 id="性能提升"><a href="#性能提升" class="headerlink" title="性能提升"></a>性能提升</h3><h4 id="Vue-3-与-Vue-2-相比有着显著的性能提升"><a href="#Vue-3-与-Vue-2-相比有着显著的性能提升" class="headerlink" title="Vue 3 与 Vue 2 相比有着显著的性能提升"></a>Vue 3 与 Vue 2 相比有着显著的性能提升</h4><ul>
+<li>在 <strong>bundle 包大小</strong>方面（tree-shaking 减少了 41%的体积）</li>
+<li><strong>初始渲染速度</strong>方面（快了 55%）</li>
+<li><strong>更新速度</strong>方面（快了 133%）</li>
+<li><strong>内存占用</strong>方面（减少了 54%）</li>
+</ul>
+<h4 id="编译信息虚拟-DOM"><a href="#编译信息虚拟-DOM" class="headerlink" title="编译信息虚拟 DOM"></a>编译信息虚拟 DOM</h4><ul>
+<li>在 3.0 中，采取了 “编译信息虚拟 DOM” 的方式：针对模板编译器进行了优化，并生成渲染函数代码，以提升静态内容的渲染性能，为绑定类型留下运行时提示，最为重要的是，模板内部的动态节点进行了扁平化处理，以减少运行时遍历的开销。</li>
+<li>因此，用户可以获得两全其美的效果，从模板中获得编译器优化后的性能，或在需要时通过手动渲染函数直接控制。</li>
+</ul>
+<h3 id="改进与-TypeScript-的兼容"><a href="#改进与-TypeScript-的兼容" class="headerlink" title="改进与 TypeScript 的兼容"></a>改进与 TypeScript 的兼容</h3><ul>
+<li>Vue 3 的代码库完全采用 TypeScript 编写，自动生成、测试并构建类型声明，因此它们总为最新。</li>
+<li>Composition API 可以很好的进行类型推断。Vetur，官方推出的 VSCode 插件，现已支持对模板表达式和 props 的类型检查</li>
+<li>同时，Vue 3 已全面支持 TSX</li>
+</ul>
+<h3 id="为单文件组件提出了两个新特性"><a href="#为单文件组件提出了两个新特性" class="headerlink" title="为单文件组件提出了两个新特性"></a>为单文件组件提出了两个新特性</h3><blockquote>
+<p><code>SFC（.vue文件）</code></p>
+</blockquote>
+<ul>
+<li><p><code>&lt;script setup&gt;</code>：在 SFC 内使用 Composition API 的语法糖</p>
+<blockquote>
+<p>这个上文已经有提及</p>
+</blockquote>
+</li>
+<li><p><code>&lt;style vars&gt;</code>：在 SFC 中支持将状态作为 CSS 变量注入到样式</p>
+<blockquote>
+<ul>
+<li>CSS本身有很多缺陷，所以才会有后面各种预处理器的出现，这些预处理器中有个非常重要的特性就是<code>变量</code></li>
+<li>这次版本更新之前，我们更多的是直接来操作dom或者直接通过变量来控制内联样式去动态改变样式，这样处理并不优雅，也会浪费一些性能</li>
+<li>提示一下，这个新特性暂时还不兼容IE11，但是指日可待啦：）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>版本更新之后我们就能在style里通过vars=””来获取我们在js中声明的变量</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">//比较简单的玩法</span><br><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">color</span> &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="javascript"><span class="xml">  data () &#123;</span></span><br><span class="javascript"><span class="xml">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="javascript"><span class="xml">      <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;red&#x27;</span></span></span><br><span class="javascript"><span class="xml">    &#125;</span></span><br><span class="javascript"><span class="xml">  &#125;</span></span><br><span class="javascript"><span class="xml">&#125;</span></span><br><span class="javascript"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">vars</span>=<span class="hljs-string">&quot;&#123; color ,..... &#125;&quot;</span>&gt;</span><span class="css"></span></span><br><span class="css"><span class="xml"><span class="hljs-selector-tag">h1</span> &#123;</span></span><br><span class="css"><span class="xml">  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color);</span></span><br><span class="css"><span class="xml">&#125;</span></span><br><span class="css"><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span><br><span class="xml"></span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+        <a href="/tags/vue3-0/">#vue3.0</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue3.0发布后的一点总结</div>
+      <div>https://blog.strugglinglee.cn/2020/09/20/vue/vue3.0发布后的一点总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿李贝斯</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月20日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/23/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/es6+/%E5%8F%AF%E9%80%89%E9%93%BE%E5%92%8C%E5%8F%8C%E9%97%AE%E5%8F%B7/" title="理解可选链和Null 判断运算符">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">理解可选链和Null 判断运算符</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/20/git/git%E5%AD%A6%E4%B9%A0/" title="git学习">
+                        <span class="hidden-mobile">git学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz","appKey":"tn09L0zaBGuSajQBt5FVsucF","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

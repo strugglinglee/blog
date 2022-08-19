@@ -1,0 +1,988 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿李贝斯">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="垂直居中的方案 弹性盒 display:flex align-items:center justify-content:center   translate position: absolute top: 50% left: 50% transform: translate(-50%,-50%)   相对定位 position: absolute top&#x2F;right&#x2F;bottom&#x2F;left:0 m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css基础">
+<meta property="og:url" content="https://blog.strugglinglee.cn/2020/06/07/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/css/css-base/index.html">
+<meta property="og:site_name" content="阿李贝斯的博客">
+<meta property="og:description" content="垂直居中的方案 弹性盒 display:flex align-items:center justify-content:center   translate position: absolute top: 50% left: 50% transform: translate(-50%,-50%)   相对定位 position: absolute top&#x2F;right&#x2F;bottom&#x2F;left:0 m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-07T08:22:16.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:29:41.904Z">
+<meta property="article:author" content="阿李贝斯">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>css基础 - 阿李贝斯的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.strugglinglee.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿李贝斯的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comment/">
+                <i class="iconfont icon-pen"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                联系我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="css基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-07 16:22" pubdate>
+          2020年6月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">css基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="垂直居中的方案"><a href="#垂直居中的方案" class="headerlink" title="垂直居中的方案"></a>垂直居中的方案</h4><ul>
+<li><strong>弹性盒</strong><ul>
+<li>display:flex</li>
+<li>align-items:center</li>
+<li>justify-content:center</li>
+</ul>
+</li>
+<li><strong>translate</strong><ul>
+<li>position: absolute</li>
+<li>top: 50%</li>
+<li>left: 50%</li>
+<li><strong>transform: translate(-50%,-50%)</strong></li>
+</ul>
+</li>
+<li><strong>相对定位</strong><ul>
+<li>position: absolute</li>
+<li>top/right/bottom/left:0</li>
+<li>margin:auto</li>
+</ul>
+</li>
+<li><strong>table+vertical-align</strong><ul>
+<li>display: table-cell</li>
+<li>vertical-align: middle<h4 id="清除浮动和BFC"><a href="#清除浮动和BFC" class="headerlink" title="清除浮动和BFC"></a>清除浮动和BFC</h4></li>
+</ul>
+</li>
+<li><strong>清除浮动原理</strong><ul>
+<li>清除浮动代码<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.clearfix</span>:after&#123;<br>    content:<span class="hljs-string">&#x27;&#x27;</span>;<br>    diaplay:block;<br>    <span class="hljs-attribute">clear</span>:both<br>&#125;<br>//兼容ie低版本<br><span class="hljs-selector-class">.clearfix</span>&#123;<br>    *zoom:<span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>主要属性=&gt;<strong>clear:both  规定在左右两侧不允许浮动元素</strong></li>
+<li><strong>display:block</strong>  <strong>clear只能在块级元素上起作用</strong></li>
+<li>visibility:hidden/height:0  只要content的值为空，写不写都无所谓</li>
+</ul>
+</li>
+<li><strong>BFC定义</strong><ul>
+<li>块级格式化上下文，是一个独立的渲染区域</li>
+<li>让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</li>
+</ul>
+</li>
+<li><strong>触发BFC条件</strong><ul>
+<li>根元素</li>
+<li>position: absolute/fixed</li>
+<li>display: inline-block / table</li>
+<li>float 元素</li>
+<li>ovevflow !== visible</li>
+</ul>
+</li>
+<li><strong>BFC规则</strong><ul>
+<li>属于同一个 BFC 的两个相邻 Box 垂直排列</li>
+<li>属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠</li>
+<li>BFC 中子元素的 margin box 的左边， 与包含块 (BFC) border box的左边相接触 (子元素 absolute 除外)</li>
+<li>BFC 的区域不会与 float 的元素区域重叠</li>
+<li>计算 BFC 的高度时，浮动子元素也参与计算</li>
+<li>文字层不会被浮动层覆盖，环绕于周围</li>
+</ul>
+</li>
+<li><strong>BFC应用</strong><ul>
+<li>阻止margin重叠</li>
+<li>可以包含浮动元素 —— 清除内部浮动 (清除浮动的原理是两个div都位于同一个 BFC 区域之中)</li>
+<li>自适应两栏布局</li>
+<li>可以阻止元素被浮动元素覆盖</li>
+<li>其子元素的float/clear/vertical属性将失效<h4 id="css常用布局"><a href="#css常用布局" class="headerlink" title="css常用布局"></a>css常用布局</h4></li>
+</ul>
+</li>
+<li>盒模型包括怪异盒模型</li>
+<li>定位</li>
+<li>流式布局</li>
+<li>浮动布局</li>
+<li>flex</li>
+<li>grid布局</li>
+</ul>
+<h4 id="css权重"><a href="#css权重" class="headerlink" title="css权重"></a>css权重</h4><ul>
+<li><strong>CSS权重</strong><ul>
+<li>是指样式的优先级，有两条或多条样式作用于一个元素</li>
+<li>权重高的那条样式对元素起作用</li>
+<li>权重相同的，后写的样式会覆盖前面写的样式。</li>
+</ul>
+</li>
+<li>权重的等级<ul>
+<li><strong>!important</strong>,加在样式属性值后，权重值为<strong>10000</strong></li>
+<li><strong>内联样式</strong>，如：style=””，权重值为1000</li>
+<li><strong>ID选择器，如：#content，权重值为100</strong></li>
+<li><strong>类，伪类和属性选择器</strong>，如：content、:hover权重值为10</li>
+<li><strong>标签选择器和伪元素选择器</strong>，如：div/p/:before权重值为1</li>
+<li>通用选择器（ * ) 、子选择器（&gt;）、相邻选择器（+）、同胞选择器（~）、权重值为0</li>
+</ul>
+</li>
+</ul>
+<h4 id="px-em-rem的区别"><a href="#px-em-rem的区别" class="headerlink" title="px/em/rem的区别"></a>px/em/rem的区别</h4><ul>
+<li><strong>px</strong> (pixel，像素):相对长度单位。像素px是相对于显示器屏幕分辨率而言的</li>
+<li><strong>em</strong>(相对长度单位，相对于当前对象内文本的字体尺寸):em是相对长度单位。相对于当前对象内文本的字体尺寸（参考物是父元素的font-size）如当前父元素的字体尺寸未设置，则相对于浏览器的默认字体尺寸<ul>
+<li>特点: em的值并不是固定的/em会继承父级元素的字体大小</li>
+</ul>
+</li>
+<li><strong>rem</strong>（root em，根em）<ul>
+<li>vue中使用postcss-px2rem</li>
+<li>自动将vue项目中的px转换为rem</li>
+<li>因为 postcss-plugin-px2rem 这个插件  配置选项上有  exclude 属性，它可以配置 是否对 某个文件夹下的所有css文件不进行从px到rem的转换。</li>
+<li>rem是CSS3新增的一个相对单位，<strong>rem是相对于HTML根元素的字体大小</strong>（font-size）来计算的长度单位</li>
+<li>优点：只需要设置<strong>根目录的大小</strong>就可以把整个页面的成比例的调好</li>
+<li>rem兼容性：除了IE8及更早版本外，所有浏览器均已支持rem</li>
+</ul>
+</li>
+<li>em与rem的区别：<ul>
+<li>rem是相对于根元素（html）的字体大小，而em是相对于其父元素的字体大小</li>
+<li>如何使 1rem=10px？在设置HTML{font-size：62.5%；}即可</li>
+</ul>
+</li>
+<li>补充内容：<ul>
+<li>vw是相对视口（viewport）的宽度而定的，长度等于视口宽度的1/100</li>
+<li>vh是相对视口（viewport）的高度而定的，长度等于视口高度的1/100</li>
+<li>vm其中最小的那个被均分为100单位的vm</li>
+</ul>
+</li>
+</ul>
+<h4 id="网站变灰–滤镜"><a href="#网站变灰–滤镜" class="headerlink" title="网站变灰–滤镜"></a>网站变灰–滤镜</h4><ul>
+<li>filter:grayscale(100%)<h4 id="文本溢出"><a href="#文本溢出" class="headerlink" title="文本溢出"></a>文本溢出</h4></li>
+<li><strong>单行文本溢出省略</strong><ul>
+<li>overflow:hidden(文字超出限定宽度，则隐藏超出的内容)</li>
+<li>white-space:nowrap(设置文字在一行显示，不能换行)</li>
+<li>text-overflow:ellipsis(规定当文本溢出时，显示省略符号来代表被修剪得文本)</li>
+</ul>
+</li>
+<li><strong>多行文本溢出省略</strong>(只适用于webkit内核)<ul>
+<li>-webkit-line-clamp:2(用来限制在一个块元素现实的文本行数)</li>
+<li>display:-webkit-box(和1结合使用，将对象作为弹性伸缩盒子显示)</li>
+<li>-webkit-box-orient:vertical(和1结合使用，设置或检索伸缩对象的子元素的排列方式)</li>
+<li>overflow:hidden</li>
+<li>text-overflow:ellipsis</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪类-伪元素"><a href="#伪类-伪元素" class="headerlink" title="伪类/伪元素"></a>伪类/伪元素</h4><ul>
+<li><strong>伪元素</strong><ul>
+<li>::fist-line为某个元素的第一行文字添加使用样式</li>
+<li>::first-letter为某个元素的文字的首字母或第一个字添加使用样式</li>
+<li>::before在某个元素之前插入一些内容</li>
+<li>::after在某个元素之后插入一些内容</li>
+<li>::selection对光标选中的元素添加样式</li>
+</ul>
+</li>
+<li>伪类<ul>
+<li>:link<ul>
+<li>选取未访问过的超链接元素，只要点过的就会变色，从而标记哪个链接是访问过的,这个属性就是用来表示没访问过的链接</li>
+</ul>
+</li>
+<li>:visited<ul>
+<li>与前者相反，用来标记哪个链接是已经访问过的，防止重复点击</li>
+</ul>
+</li>
+<li>:hover<ul>
+<li>选取鼠标悬停的元素，经常用在PC端，当鼠标放在一个元素上面时的样式,移动端基本用不到</li>
+</ul>
+</li>
+<li>:active<ul>
+<li>选取点中的元素，希望按钮有反馈的时候 可以用它来标记操作反馈的样式</li>
+<li>并不只可以用在按钮上</li>
+</ul>
+</li>
+<li>:focus</li>
+<li>:empty<ul>
+<li>选取没有子元素的元素，比如选择空的span</li>
+<li>要注意，就算有空格的化也不能算空，不会被这个伪类选中</li>
+</ul>
+</li>
+<li>:checked<ul>
+<li>选取勾选状态的input元素，只对radio/checkbox生效</li>
+</ul>
+</li>
+<li>:disabled<ul>
+<li>选取禁用的表单元素</li>
+</ul>
+</li>
+<li>:first/last/nth-child/:nth-last-child(an+b)</li>
+<li>:only-child(选取<strong>唯一</strong>子元素)</li>
+<li>:not<ul>
+<li>该伪类本身没有优先级</li>
+<li>优先级由括号里面的内容决定<h4 id="重绘和回流"><a href="#重绘和回流" class="headerlink" title="重绘和回流"></a>重绘和回流</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>重绘</strong>:指当前页面的元素不脱离文档流，简单的进行样式的变化，如修改颜色背景，浏览器绘制样式等</li>
+<li><strong>回流</strong>:指处于文档流中DOM的尺寸大小，位置或者某些属性发生变化时，导致浏览器重新渲染部分或者全部文档</li>
+<li>回流比重绘消耗性能开支更大<h4 id="html5新特性"><a href="#html5新特性" class="headerlink" title="html5新特性"></a>html5新特性</h4></li>
+<li>用于绘画的<strong>canvas</strong>元素</li>
+<li>用于媒介回放的 <strong>video</strong> 和<strong>audio</strong>元素</li>
+<li><strong>svg</strong>,地理定位</li>
+<li>对本地离线存储的更好的支持<strong>localStorage</strong>(5M的存储空间&gt;&gt;cookies的4K)</li>
+<li>语义化标签 article、footer、header、nav、section</li>
+<li><strong>WebSocket</strong>长链接<h4 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h4></li>
+<li><strong>伪元素</strong><ul>
+<li>::first-line（首行）</li>
+<li>::first-letter （首字）</li>
+<li>::before 在某个元素之前插入一些内容</li>
+<li>::after 在某个元素之后插入一些内容</li>
+</ul>
+</li>
+<li><strong>盒模型</strong>（box-sizing: border-box怪异盒模型的运用）</li>
+<li><strong>弹性盒子</strong><ul>
+<li>定义<ul>
+<li>一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式</li>
+<li>弹性盒子由<strong>弹性容器</strong>(Flex container)和<strong>弹性子元素</strong>(Flex item)组成。</li>
+<li>弹性容器通过设置 display 属性的值为 flex 或 inline-flex将其定义为弹性容器。</li>
+</ul>
+</li>
+<li><strong>flex-direction</strong>  顺序指定了弹性子元素在父容器中的位置。<ul>
+<li>row：横向从左到右排列（左对齐），默认的排列方式。</li>
+<li>row-reverse：反转横向排列（右对齐，从后往前排，最后一项排在最前面</li>
+<li>column：纵向排列。</li>
+<li>column-reverse：反转纵向排列，从后往前排，最后一项排在最上面。</li>
+</ul>
+</li>
+<li><strong>justify-content</strong> 属性(控制主轴)<ul>
+<li>justify-content: flex-start | flex-end | center | space-between | space-around</li>
+<li>flex-start 弹性项目向行头紧挨着填充。默认值</li>
+<li>flex-end 弹性项目向行尾紧挨着填充。</li>
+<li>center 弹性项目居中紧挨着填充。</li>
+<li>space-between 弹性项目平均分布在该行上，两端对齐。</li>
+<li>space-around 弹性项目平均分布在该行上，两边留有一半的间隔空间。</li>
+</ul>
+</li>
+<li><strong>align-items</strong> 设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式<ul>
+<li>flex-start：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。</li>
+<li>flex-end：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。</li>
+<li>center：弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。</li>
+<li>baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与’flex-start’等效。其它情况下，该值将参与基线对齐。</li>
+<li>stretch：默认值，自动将子元素拉伸成容器的高度</li>
+</ul>
+</li>
+<li><strong>flex-wrap</strong>属性用于指定弹性盒子的子元素换行方式<ul>
+<li>nowrap- 默认，弹性容器为单行。该情况下弹性子项可能会溢出容器。</li>
+<li>wrap- 弹性容器为多行。该情况下弹性子项溢出的部分会被放置到新行，子项内部会发生断行</li>
+<li>wrap-reverse-反转 wrap 排列。</li>
+</ul>
+</li>
+<li><strong>align-content</strong> 属性用于修改flex-wrap属性的行为。类似于align-items, 但它不是设置弹性子元素的对齐，而是设置各个行的对齐。<ul>
+<li>stretch- 默认。各行将会伸展以占用剩余的空间。</li>
+<li>flex-start- 各行向弹性盒容器的起始位置堆叠。</li>
+<li>flex-end- 各行向弹性盒容器的结束位置堆叠。</li>
+<li>center-各行向弹性盒容器的中间位置堆叠。</li>
+<li>space-between-各行在弹性盒容器中平均分布。</li>
+<li>space-around- 各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。</li>
+</ul>
+</li>
+<li><strong>align-self</strong>属性用于设置弹性元素自身在侧轴（纵轴）方向上的对齐方式<ul>
+<li>auto：如果’align-self’的值为’auto’，则其计算值为元素的父元素的’align-items’值，如果其没有父元素，则计算值为’stretch’。</li>
+<li>flex-start：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。</li>
+<li>flex-end：弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。</li>
+<li>center：弹性盒子元素在该行的侧轴（纵轴）上居中放置。</li>
+<li>baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与’flex-start’等效。其它情况下，该值将参与基线对齐。</li>
+<li>stretch：如果指定侧轴大小的属性值为’auto’，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照’min/max-width/height’属性的限制。</li>
+</ul>
+</li>
+<li><strong>flex</strong> 属性用于指定弹性子元素如何分配空间</li>
+<li><strong>flex-basis</strong> 用来设置子元素主轴方向的尺寸，eg:flex-basis:200px;</li>
+</ul>
+</li>
+<li>背景和边框<ul>
+<li><strong>border-radius</strong></li>
+<li><strong>box-shadow</strong></li>
+<li>border-image</li>
+<li>background-size</li>
+<li>background-origin</li>
+<li>content-box</li>
+<li>padding-box</li>
+<li>border-box</li>
+<li>多重背景background-image:url(bg_flower.gif),url(bg_flower_2.gif);</li>
+<li>文本效果text-shadow（能够规定水平阴影、垂直阴影、模糊距离，以及阴影的颜色）text-shadow: 5px 5px 5px #FF0000;</li>
+<li><strong>word-wrap</strong>允许您允许文本强制文本进行换行 即使这意味着会对单词进行拆分</li>
+</ul>
+</li>
+<li>字体<ul>
+<li>将该字体文件存放到 web 服务器上，它会在需要时被自动下载到用户的计算机上（之前是需要下载到本地的）</li>
+<li>@font-face 规则中定义<ul>
+<li>首先定义字体的名称（比如 myFirstFont）然后指向该字体文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>2D/3D 转换</strong><ul>
+<li>CSS3 转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸</li>
+<li>2D转换<ul>
+<li><strong>translate()</strong>–translateX/Y<ul>
+<li>transform: translate(50px,100px);把元素从左侧移动 50 像素，从顶端移动 100 像素</li>
+</ul>
+</li>
+<li><strong>rotate()</strong>:transform: rotate(30deg);元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转</li>
+<li><strong>scale()</strong>–scaleX/Y transform: scale(2,4)把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍。</li>
+<li><strong>skew()</strong>–skewX/Y元素翻转给定的角度，根据给定的水平线（X 轴）和垂直线（Y 轴）参数<ul>
+<li>transform: skew(30deg,20deg);围绕 X 轴把元素翻转 30 度，围绕 Y 轴翻转 20 度</li>
+</ul>
+</li>
+<li><strong>matrix()</strong><ul>
+<li>把所有 2D 转换方法组合在一起</li>
+<li>matrix() 方法需要六个参数，包含数学函数，允许您：旋转、缩放、移动以及倾斜元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>3D转换</strong><ul>
+<li>translateX(x) /translateY(y)/translateZ(z)</li>
+<li>scale3d(x,y,z)/scaleX(x)/scaleY(y)/scaleZ(z)</li>
+<li>rotate3d(x,y,z,angle) /rotateX(angle)/rotateY(angle)/rotateZ(angle)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>transition 过渡效果</strong><ul>
+<li>transition: property duration timing-function delay;</li>
+<li>transition: 过渡动画</li>
+<li>transition-property: 属性</li>
+<li>transition-duration: 间隔</li>
+<li>transition-timing-function: 曲线</li>
+<li>transition-delay: 延迟</li>
+</ul>
+</li>
+<li><strong>动画</strong><ul>
+<li>@keyframes 创建动画规则（from-to/0%~100%）<ul>
+<li> @keyframes myfirst{from {background: red;}to {background: yellow;}}</li>
+</ul>
+</li>
+<li> animation: <strong>myfirst 5s linear 2s infinite alternate</strong>;</li>
+<li>animation-timing-function：规定动画的速度曲线。默认是ease</li>
+<li>animation-delay：规定动画何时开始。默认是 0</li>
+<li>animation-iteration-count：规定动画被播放的次数。默认是 1</li>
+<li>animation-direction：规定动画是否在下一周期逆向地播放。默认是normal</li>
+<li>animation-play-state ：规定动画是否正在运行或暂停。默认是running</li>
+<li>animation-fill-mode：规定动画执行之前和之后如何给动画的目标应用，默认是none，保留在最后一帧可以用forwards</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/" class="category-chain-item">基础巩固</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/css/" class="category-chain-item">css</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/css/">#css</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>css基础</div>
+      <div>https://blog.strugglinglee.cn/2020/06/07/基础巩固/css/css-base/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿李贝斯</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年6月7日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/07/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA/es6+/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3es6%E8%A3%85%E9%A5%B0%E5%99%A8/" title="深入理解es6装饰器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">深入理解es6装饰器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz","appKey":"tn09L0zaBGuSajQBt5FVsucF","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

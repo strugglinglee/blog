@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿李贝斯">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如何使用github pages + github Actions + VuePress构建站点最近一直想着将自己零零碎碎的笔记文档归纳一下，刚好之前看到好几个用Vuepress构建的文档都很清晰明了，又想尝试下github自带的CI&#x2F;CD功能，所以就想使用github pages + github Actions + VuePress构建属于自己学习的站点。 这样既可以满足作为一个程序员习惯使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用github pages + github Actions + VuePress构建站点">
+<meta property="og:url" content="https://blog.strugglinglee.cn/2022/04/08/github/github-pages/index.html">
+<meta property="og:site_name" content="阿李贝斯的博客">
+<meta property="og:description" content="如何使用github pages + github Actions + VuePress构建站点最近一直想着将自己零零碎碎的笔记文档归纳一下，刚好之前看到好几个用Vuepress构建的文档都很清晰明了，又想尝试下github自带的CI&#x2F;CD功能，所以就想使用github pages + github Actions + VuePress构建属于自己学习的站点。 这样既可以满足作为一个程序员习惯使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/1.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/2.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/3.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/4.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/5-1.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/5.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/6.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/9.png">
+<meta property="og:image" content="https://blog.strugglinglee.cn/img/github/10.png">
+<meta property="article:published_time" content="2022-04-08T03:25:27.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:29:41.904Z">
+<meta property="article:author" content="阿李贝斯">
+<meta property="article:tag" content="github pages">
+<meta property="article:tag" content="github Actions">
+<meta property="article:tag" content="VuePress">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.strugglinglee.cn/img/github/1.png">
+  
+  
+  
+  <title>如何使用github pages + github Actions + VuePress构建站点 - 阿李贝斯的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.strugglinglee.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿李贝斯的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comment/">
+                <i class="iconfont icon-pen"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                联系我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="如何使用github pages + github Actions + VuePress构建站点"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-08 11:25" pubdate>
+          2022年4月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">如何使用github pages + github Actions + VuePress构建站点</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="如何使用github-pages-github-Actions-VuePress构建站点"><a href="#如何使用github-pages-github-Actions-VuePress构建站点" class="headerlink" title="如何使用github pages + github Actions + VuePress构建站点"></a>如何使用github pages + github Actions + VuePress构建站点</h1><p>最近一直想着将自己零零碎碎的笔记文档归纳一下，刚好之前看到好几个用Vuepress构建的文档都很清晰明了，又想尝试下github自带的CI/CD功能，所以就想使用github pages + github Actions + VuePress构建属于自己学习的站点。</p>
+<p>这样既可以满足作为一个程序员习惯使用自己的编辑器记录的心理，可以清晰的看到自己的历史提交记录，又可以通过自己建立的学习站点访问构建好学习文档沉浸式学习，实在是非常好的体验。</p>
+<p>以下我会建立一个有关算法的学习站点作为示范。</p>
+<h2 id="使用VuePress构建项目"><a href="#使用VuePress构建项目" class="headerlink" title="使用VuePress构建项目"></a>使用VuePress构建项目</h2><p>VuePress 诞生初衷是为了支持 Vue 及其子项目的文档需求，每一个由 VuePress 生成的页面都带有预渲染好的 HTML，也因此具有非常好的加载性能和搜索引擎优化（SEO）。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/zh/guide">vuepress官方文档链接</a></p>
+</blockquote>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir algorithm-learn &amp;&amp; cd algorithm-learn<br>npm init<br>npm install -D vuepress<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建自己的第一个文档"><a href="#创建自己的第一个文档" class="headerlink" title="创建自己的第一个文档"></a>创建自己的第一个文档</h3><p><img src="/img/github/1.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir docs &amp;&amp; echo &#x27;# Hello algorithm&#x27; &gt; docs/README.md<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>温馨提示： echo写入的方式可能会导致文档乱码，如发生这种情况请手动创建</p>
+</blockquote>
+<h3 id="在docs夹子下创建vuepress的配置文件"><a href="#在docs夹子下创建vuepress的配置文件" class="headerlink" title="在docs夹子下创建vuepress的配置文件"></a>在docs夹子下创建vuepress的配置文件</h3><p><img src="/img/github/2.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>可以自己更换相关字段</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;<br>  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;算法学习&#x27;</span>,<br>  <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Just playing around&#x27;</span>,<br>  <span class="hljs-attr">base</span>: <span class="hljs-string">&#x27;/algorithm-learn/&#x27;</span>,<br>  <span class="hljs-attr">configureWebpack</span>: &#123;<br>    <span class="hljs-attr">resolve</span>: &#123;<br>      <span class="hljs-attr">alias</span>: &#123;<br>        <span class="hljs-comment">// &quot;@alias&quot;: &quot;path/to/some/dir&quot;,</span><br>      &#125;,<br>    &#125;,<br>  &#125;,<br>  <span class="hljs-comment">// theme: &#x27;reco&#x27;,</span><br>  <span class="hljs-attr">locales</span>: &#123;<br>    <span class="hljs-string">&#x27;/&#x27;</span>: &#123;<br>      <span class="hljs-attr">lang</span>: <span class="hljs-string">&#x27;zh-CN&#x27;</span>,<br>    &#125;,<br>  &#125;,<br>  <span class="hljs-attr">themeConfig</span>: &#123;<br>    <span class="hljs-attr">subSidebar</span>: <span class="hljs-string">&#x27;auto&#x27;</span>,<br>    <span class="hljs-attr">nav</span>: [<br>      &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;首页&#x27;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&#x27;/&#x27;</span> &#125;,<br>      &#123;<br>        <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;了解更多&#x27;</span>,<br>        <span class="hljs-attr">items</span>: [<br>          &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Github&#x27;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&#x27;https://github.com/strugglinglee&#x27;</span> &#125;,<br>          &#123;<br>            <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;博客&#x27;</span>,<br>            <span class="hljs-attr">link</span>: <span class="hljs-string">&#x27;https://blog.strugglinglee.cn/&#x27;</span>,<br>          &#125;,<br>        ],<br>      &#125;,<br>    ],<br>    <span class="hljs-attr">sidebar</span>: [<br>    <span class="hljs-comment">//   &#123;</span><br>    <span class="hljs-comment">//     title: &#x27;JS基础&#x27;,</span><br>    <span class="hljs-comment">//     // path: &#x27;/JavaScript&#x27;,</span><br>    <span class="hljs-comment">//     collapsable: true,</span><br>    <span class="hljs-comment">//     children: [],</span><br>    <span class="hljs-comment">//   &#125;</span><br>    ],<br>  &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="在package-json文件中增加这些命令"><a href="#在package-json文件中增加这些命令" class="headerlink" title="在package.json文件中增加这些命令"></a>在package.json文件中增加这些命令</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>  <span class="hljs-attr">&quot;dev&quot;</span>: <span class="hljs-string">&quot;vuepress dev docs&quot;</span>,<br>  <span class="hljs-attr">&quot;build&quot;</span>: <span class="hljs-string">&quot;vuepress build docs&quot;</span><br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>执行<code>npm run dev</code>就可以在本地看到一个初步的文档了</p>
+<h2 id="github-Actions-github-pages操作流程"><a href="#github-Actions-github-pages操作流程" class="headerlink" title="github Actions + github pages操作流程"></a>github Actions + github pages操作流程</h2><h3 id="在github创建自己的仓库"><a href="#在github创建自己的仓库" class="headerlink" title="在github创建自己的仓库"></a>在github创建自己的仓库</h3><p><img src="/img/github/3.png" srcset="/img/loading.gif" lazyload><br>并按照常规顺序把本地代码推到远程（略）</p>
+<h3 id="创建actions"><a href="#创建actions" class="headerlink" title="创建actions"></a>创建actions</h3><p>搜索node,并在github上面的界面提交自动创建的代码，然后将代码拉到本地<br><img src="/img/github/4.png" srcset="/img/loading.gif" lazyload><br><img src="/img/github/5-1.png" srcset="/img/loading.gif" lazyload><br><img src="/img/github/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>参考如下代码替换node.js.yml文件</p>
+<blockquote>
+<p>这里我们使用到了<a target="_blank" rel="noopener" href="https://github.com/JamesIves/github-pages-deploy-action">JamesIves</a>，注意版本的更新，可以参考github仓库中的说明文件。<br><code>JamesIves</code>也是阮一峰老师曾经在博文中推荐过的，目前star已近3k，还是可以放心使用的。</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">name:</span> <span class="hljs-string">Node.js</span> <span class="hljs-string">CI</span><br><br><span class="hljs-attr">on:</span><br>  <span class="hljs-attr">push:</span><br>    <span class="hljs-attr">branches:</span> [ <span class="hljs-string">main</span> ]<br>  <span class="hljs-attr">pull_request:</span><br>    <span class="hljs-attr">branches:</span> [ <span class="hljs-string">main</span> ]<br><br><span class="hljs-attr">jobs:</span><br>  <span class="hljs-attr">build:</span><br><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br><br>    <span class="hljs-attr">strategy:</span><br>      <span class="hljs-attr">matrix:</span><br>        <span class="hljs-attr">node-version:</span> [<span class="hljs-number">14.</span><span class="hljs-string">x</span>]<br>        <span class="hljs-comment"># See supported Node.js release schedule at https://nodejs.org/en/about/releases/</span><br><br>    <span class="hljs-attr">steps:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span> <span class="hljs-string">🛎️</span><br>        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span><br><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">and</span> <span class="hljs-string">Build</span> <span class="hljs-string">🔧</span> <span class="hljs-comment"># This example project is built using npm and outputs the result to the &#x27;build&#x27; folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          npm install yarn -g</span><br><span class="hljs-string">          yarn install</span><br><span class="hljs-string">          yarn run build</span><br><span class="hljs-string"></span>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">🚀</span><br>        <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@v4.3.0</span><br>        <span class="hljs-attr">with:</span><br>          <span class="hljs-attr">branch:</span> <span class="hljs-string">gh-pages</span> <span class="hljs-comment"># The branch the action should deploy to.</span><br>          <span class="hljs-attr">ACCESS_TOKEN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.access_token_key</span> <span class="hljs-string">&#125;&#125;</span><br>          <span class="hljs-attr">FOLDER:</span> <span class="hljs-string">docs/.vuepress/dist</span><br>          <span class="hljs-attr">CLEAN:</span> <span class="hljs-literal">true</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="将本地代码推送到远程"><a href="#将本地代码推送到远程" class="headerlink" title="将本地代码推送到远程"></a>将本地代码推送到远程</h3><p>远程将会创建一个gh-pages分支，这个分支上的代码就是我们构建出的最后站点所需要的资源</p>
+<p><img src="/img/github/6.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="设置github-pages"><a href="#设置github-pages" class="headerlink" title="设置github pages"></a>设置github pages</h3><p><img src="/img/github/9.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="完结撒花"><a href="#完结撒花" class="headerlink" title="完结撒花"></a>完结撒花</h2><p>通过链接访问<a target="_blank" rel="noopener" href="https://strugglinglee.github.io/algorithm-learn/">https://strugglinglee.github.io/algorithm-learn/</a></p>
+<p><img src="/img/github/10.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p><a target="_blank" rel="noopener" href="https://github.com/strugglinglee/algorithm-learn">https://github.com/strugglinglee/algorithm-learn</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/github/" class="category-chain-item">github</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/github-pages/">#github pages</a>
+      
+        <a href="/tags/github-Actions/">#github Actions</a>
+      
+        <a href="/tags/VuePress/">#VuePress</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>如何使用github pages + github Actions + VuePress构建站点</div>
+      <div>https://blog.strugglinglee.cn/2022/04/08/github/github-pages/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿李贝斯</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月8日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="浅谈前端常用设计模式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浅谈前端常用设计模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/25/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="算法基础之数据结构">
+                        <span class="hidden-mobile">算法基础之数据结构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz","appKey":"tn09L0zaBGuSajQBt5FVsucF","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

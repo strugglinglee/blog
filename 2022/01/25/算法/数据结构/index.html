@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="阿李贝斯">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数组初始化一个数组，不知道它内部元素的情况下，推荐使用构造函数创建数组的方法 123456&#x2F;&#x2F;不传任何参数，得到一个空数组const arr &#x3D; new Array()&#x2F;&#x2F;指定长度数组const arr &#x3D; new Array(7)&#x2F;&#x2F;指定长度，指定元素的数组const arr &#x3D; new Array(7).fill(7)  遍历数组从性能上看，for循环遍历起来是最快的 矩阵定义二维数组，也就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法基础之数据结构">
+<meta property="og:url" content="https://blog.strugglinglee.cn/2022/01/25/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="阿李贝斯的博客">
+<meta property="og:description" content="数组初始化一个数组，不知道它内部元素的情况下，推荐使用构造函数创建数组的方法 123456&#x2F;&#x2F;不传任何参数，得到一个空数组const arr &#x3D; new Array()&#x2F;&#x2F;指定长度数组const arr &#x3D; new Array(7)&#x2F;&#x2F;指定长度，指定元素的数组const arr &#x3D; new Array(7).fill(7)  遍历数组从性能上看，for循环遍历起来是最快的 矩阵定义二维数组，也就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-25T10:54:16.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:29:41.908Z">
+<meta property="article:author" content="阿李贝斯">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法基础">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>算法基础之数据结构 - 阿李贝斯的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.strugglinglee.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿李贝斯的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comment/">
+                <i class="iconfont icon-pen"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                联系我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="算法基础之数据结构"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-25 18:54" pubdate>
+          2022年1月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">算法基础之数据结构</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>初始化一个数组，不知道它内部元素的情况下，推荐使用构造函数创建数组的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//不传任何参数，得到一个空数组</span><br><span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>()<br><span class="hljs-comment">//指定长度数组</span><br><span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">7</span>)<br><span class="hljs-comment">//指定长度，指定元素的数组</span><br><span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">7</span>).fill(<span class="hljs-number">7</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h3><p>从性能上看，for循环遍历起来是最快的</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>二维数组，也就是数组套数组</p>
+<p>在数学中，形如这样长方阵列排列的复数或实数集合，被称为“矩阵”。因此二维数组的别名就叫“矩阵”。</p>
+<h3 id="创建二维数组"><a href="#创建二维数组" class="headerlink" title="创建二维数组"></a>创建二维数组</h3><h4 id="错误写法"><a href="#错误写法" class="headerlink" title="错误写法"></a>错误写法</h4><p>fill入参是引用类型，指向同一个堆内存空间，改变其中一个数组，其他的都会跟着改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> arr =(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">7</span>)).fill([])<br></code></pre></td></tr></table></figure>
+
+<h4 id="正确写法"><a href="#正确写法" class="headerlink" title="正确写法"></a>正确写法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> len = arr.length<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) &#123;<br>    <span class="hljs-comment">// 将数组的每一个坑位初始化为数组</span><br>    arr[i] = []<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="二维数组的访问"><a href="#二维数组的访问" class="headerlink" title="二维数组的访问"></a>二维数组的访问</h3><p>两层for循环，依次类推，N 维数组需要 N 层循环来完成遍历。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 缓存外部数组的长度</span><br><span class="hljs-keyword">const</span> outerLen = arr.length<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;outerLen;i++) &#123;<br>    <span class="hljs-comment">// 缓存内部数组的长度</span><br>    <span class="hljs-keyword">const</span> innerLen = arr[i].length<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;innerLen;j++) &#123;<br>        <span class="hljs-comment">// 输出数组的值，输出数组的索引</span><br>        <span class="hljs-built_in">console</span>.log(arr[i][j],i,j)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><p>栈和队列的实现一般都依赖于数组</p>
+<h3 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h3><p>后进先出(LIFO，last in first out)的数据结构</p>
+<blockquote>
+<p>最先出来的称为<code>栈顶元素</code>，主要关心栈顶元素</p>
+</blockquote>
+<p>只用<code>pop</code>和<code>push</code>完成增删的数组</p>
+<ul>
+<li>只允许从尾部添加元素</li>
+<li>只允许从尾部取出元素</li>
+</ul>
+<blockquote>
+<p>形象记忆：拿东西，后放进去的在表层，可以最先拿出来</p>
+</blockquote>
+<h3 id="队列（Quene）"><a href="#队列（Quene）" class="headerlink" title="队列（Quene）"></a>队列（Quene）</h3><p>先进先出（FIFO,First in first out）的数据结构</p>
+<blockquote>
+<p>最先出来的称为<code>队头元素</code>，主要关心队头元素</p>
+</blockquote>
+<p>只用<code>push</code>和<code>shift</code>完成增删的数组</p>
+<ul>
+<li>只允许从尾部添加元素</li>
+<li>只允许从头部移除元素</li>
+</ul>
+<blockquote>
+<p>形象记忆：排队吃饭，先进先出</p>
+</blockquote>
+<h3 id="队列-vs-栈"><a href="#队列-vs-栈" class="headerlink" title="队列 vs 栈"></a>队列 vs 栈</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>队列</th>
+<th>栈</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加元素方法</td>
+<td>push()</td>
+<td>push()</td>
+</tr>
+<tr>
+<td>删除元素方法</td>
+<td><strong>shift()</strong></td>
+<td><strong>pop()</strong></td>
+</tr>
+<tr>
+<td>最先出来的</td>
+<td><strong>队头</strong>元素</td>
+<td><strong>栈顶</strong>元素</td>
+</tr>
+<tr>
+<td>出入方式</td>
+<td>先进先出</td>
+<td>后进先出</td>
+</tr>
+</tbody></table>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>和数组相似，又是有序的列表，都是<code>线性结构</code>（有且只有一个前驱，有且只有一个后继）</p>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><p>数据单位的名称叫做“结点”，结点和结点的分布，在内存中可以是离散的</p>
+<p>在链表中，每一个结点的结构都包括了两部分内容：</p>
+<ol>
+<li>数据域(存储的是当前结点所存储的数据值)</li>
+<li>指针域(代表下一个结点-后继结点的引用)</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>    <span class="hljs-comment">// 数据域</span><br>    <span class="hljs-attr">val</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-comment">// 指针域，指向下一个结点</span><br>    <span class="hljs-attr">next</span>: &#123;<br>        <span class="hljs-attr">val</span>:<span class="hljs-number">2</span>,<br>        <span class="hljs-attr">next</span>: ...<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListNode</span>(<span class="hljs-params">val</span>) </span>&#123;<br>    <span class="hljs-built_in">this</span>.val = val;<br>    <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>链表的结点间关系是通过 next 指针来维系的。因此，链表元素的添加和删除操作，本质上都是在围绕 next 指针做文章。</p>
+<h3 id="链表的删除"><a href="#链表的删除" class="headerlink" title="链表的删除"></a>链表的删除</h3><p><strong>重点:定位目标结点的前驱结点</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = node1.next<br>node1.next = target.next<br></code></pre></td></tr></table></figure>
+
+<h3 id="链表节点的创建"><a href="#链表节点的创建" class="headerlink" title="链表节点的创建"></a>链表节点的创建</h3><p>在使用构造函数创建结点时，传入 val （数据域对应的值内容）、指定 next （下一个链表结点）即可：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> node = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">1</span>)<br>node.next = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="链表节点的插入"><a href="#链表节点的插入" class="headerlink" title="链表节点的插入"></a>链表节点的插入</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果目标结点本来不存在，那么记得手动创建</span><br><span class="hljs-keyword">const</span> node3 = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">3</span>)<br><span class="hljs-comment">// 把node3的 next 指针指向 node2（即 node1.next）</span><br>node3.next = node1.next<br><span class="hljs-comment">// 把node1的 next 指针指向 node3</span><br>node1.next = node3<br></code></pre></td></tr></table></figure>
+
+<h2 id="链表和数组的辨析"><a href="#链表和数组的辨析" class="headerlink" title="链表和数组的辨析"></a>链表和数组的辨析</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>链表</th>
+<th>数组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>增删时间复杂度</td>
+<td>常数级别的复杂度，<strong>O(1)</strong></td>
+<td>随着数组长度 n 的增大而增大，呈一个线性关系。<strong>O(n)</strong></td>
+</tr>
+<tr>
+<td>查找时间复杂度</td>
+<td>当我们试图读取某一个特定的链表结点时，必须遍历整个链表来查找它，呈线性规律，<strong>O(n)</strong></td>
+<td>直接访问索引、可以做到一步到位，这个操作的复杂度会被降级为常数级别<strong>O(1)</strong></td>
+</tr>
+<tr>
+<td>效率</td>
+<td><strong>插入/删除效率较高，访问效率较低</strong></td>
+<td><strong>访问效率较高，而插入效率较低</strong></td>
+</tr>
+</tbody></table>
+<p><strong>JS数组未必是真正的数组</strong><br>数组定义了不同类型的元素，对应的是一段非连续的内存，JS数组在此时不再具有数组的特征，其底层使用哈希映射分配内存空间，是由对象链表来实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">&#x27;haha&#x27;</span>,<span class="hljs-number">1</span>,&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">1</span>&#125;]<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>真正的数组：“存储在连续的内存空间里”这样的必要条件</p>
+</blockquote>
+<p><strong>链表明显的优点：</strong><br>添加和删除元素都不需要挪动多余的元素。</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><ul>
+<li><strong>度</strong>：一个结点开叉出去多少个子树，被记为结点的“度”</li>
+<li><strong>叶子结点</strong>：度为0的结点</li>
+<li><strong>树的高度</strong>：<code>叶子结点</code>高度为1，每向上一层高度加一，逐层向上累加至目标结点，所得的的值就是目标结点的高度，树中结点的最大高度称为“树的高度”</li>
+<li>根结点所在的为第一层，子结点所在的为第二层</li>
+</ul>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h4><ul>
+<li>可以没有根结点，作为一棵<code>空树</code>存在</li>
+<li>如果它不是空树，那么必须由<code>根结点</code>、<code>左子树</code>和<code>右子树</code>组成，且左右子树都是<code>二叉树</code>。</li>
+</ul>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><p>在 JS 中，二叉树使用对象来定义。它的结构分为三块：</p>
+<ol>
+<li>数据域</li>
+<li>左侧子结点（左子树根结点）的引用</li>
+<li>右侧子结点（右子树根结点）的引用</li>
+</ol>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>左右侧子节点预置为空</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 二叉树结点的构造函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val</span>) </span>&#123;<br>    <span class="hljs-built_in">this</span>.val = val;<br>    <span class="hljs-built_in">this</span>.left = <span class="hljs-built_in">this</span>.right = <span class="hljs-literal">null</span>;<br>&#125;<br><span class="hljs-comment">// 二叉树创建</span><br><span class="hljs-keyword">const</span> node  = <span class="hljs-keyword">new</span> TreeNode(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="遍历方式"><a href="#遍历方式" class="headerlink" title="遍历方式"></a>遍历方式</h4><p><strong>按遍历顺序分为：</strong></p>
+<ol>
+<li>先序遍历</li>
+<li>中序遍历</li>
+<li>后序遍历</li>
+<li>层次遍历</li>
+</ol>
+<p><strong>按实现方式分为：</strong></p>
+<ol>
+<li>递归遍历（先、中、后序遍历）</li>
+<li>迭代遍历（层次遍历）</li>
+</ol>
+<p><strong>先序遍历</strong>：<strong>根结点</strong> -&gt; 左子树 -&gt; 右子树<br><strong>中序遍历</strong>：左子树 -&gt; <strong>根结点</strong> -&gt; 右子树<br><strong>后序遍历</strong>：左子树 -&gt; 右子树 -&gt; <strong>根结点</strong></p>
+<blockquote>
+<p><strong>方便记忆</strong>：对于<code>根结点</code>遍历的位置来定的</p>
+</blockquote>
+<h4 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 先序遍历</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preOrder</span>(<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span>(!root)&#123;<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-comment">// 当前遍历节点</span><br>  <span class="hljs-built_in">console</span>.log(root.val)<br>  <span class="hljs-comment">// 左子树</span><br>  preOrder(root.left)<br>  <span class="hljs-comment">// 右子树</span><br>  preOrder(root.right)<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/">#算法基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>算法基础之数据结构</div>
+      <div>https://blog.strugglinglee.cn/2022/01/25/算法/数据结构/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>阿李贝斯</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/08/github/github-pages/" title="如何使用github pages + github Actions + VuePress构建站点">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">如何使用github pages + github Actions + VuePress构建站点</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/23/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%20H5%20%E8%B7%B3%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="静态网站H5直接跳转小程序解决方案">
+                        <span class="hidden-mobile">静态网站H5直接跳转小程序解决方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qYyA7UQzwkwqVvn7beeDwxrv-gzGzoHsz","appKey":"tn09L0zaBGuSajQBt5FVsucF","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>由Hexo强力驱动</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>主题：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
